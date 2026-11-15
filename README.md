@@ -77,16 +77,16 @@ isi Skills39!
 `sudo cp /tmp/ca.pem /usr/local/share/ca-certificates/nusantara-root-ca.crt`
 `sudo update-ca-certificates`
 
-5. Install openvpn
+6. Install openvpn
 `apt install -y openvpn-systemd-resolved openvpn dns-utils`
 
-6.cari file
+cari file
 `cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /apt/openvpn/client.ovpn`
 
-7.bikin folder
+bikin folder
 `sudo mkdir -p /etc/openvpn/client /etc/openvpn/auth``
 
-6.edit file user.txt
+7.edit file user.txt
 `nano /etc/openvpn/auth/user.txt`
 ```text
 
@@ -95,10 +95,10 @@ Skills39s!
 ```
 `sudo chmod 600 /etc/openvpn/auth/user.txt`
 
-7.Copy Root CA for OpenVPN verification
+8.Copy Root CA for OpenVPN verification
 `sudo cp /usr/local/share/ca-certificates/nusantara-root-ca.crt /etc/openvpn/client/ca.crt`
 
-8.Edit File client.ovpn
+9.Edit File client.ovpn
 ```text
 client
 dev tun
@@ -120,5 +120,5 @@ script-security 2
 up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
-9.nyalakan
+10.nyalakan
 `sudo openvpn --config /etc/openvpn/client/client.ovpn`
