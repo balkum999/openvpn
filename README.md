@@ -62,7 +62,7 @@ isi Skills39!
 1.login root
 `su -`
 
-2.Create user boaz with passwordless sudo
+2.Create user boaz
 `sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz`
 
 3.ganti password
