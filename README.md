@@ -7,9 +7,11 @@
 
 ## Server Side
 1.Install openvpn
-`apt install openvpn -y`
+```bash
+apt install openvpn -y
 cari file
-`cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /apt/openvpn/server`
+```bash
+cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /apt/openvpn/server
 
 2.edit file server.conf
 ```text
@@ -47,8 +49,10 @@ log-append /var/log/openvpn/openvpn.log
 verb 3
 ```
 3.bikin user vpn
-`sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz`
-`passwd boaz`
+```bash
+sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz
+```bash
+passwd boaz
 isi Skills39!
 
 4.nyalakan
