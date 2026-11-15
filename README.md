@@ -7,11 +7,10 @@
 
 ## Server Side
 1.Install openvpn
-```bash
-apt install openvpn -y
+`apt install openvpn -y`
+
 cari file
-```bash
-cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /apt/openvpn/server
+`cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /apt/openvpn/server`
 
 2.edit file server.conf
 ```text
@@ -49,13 +48,13 @@ log-append /var/log/openvpn/openvpn.log
 verb 3
 ```
 3.bikin user vpn
-```bash
-sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz
-```bash
-passwd boaz
+`sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz`
+
+4.ganti password
+`passwd boaz`
 isi Skills39!
 
-4.nyalakan
+5.nyalakan
 `sudo systemctl enable --now openvpn-server@server`
 
 ## Client Side
@@ -65,25 +64,32 @@ isi Skills39!
 
 2.Create user boaz with passwordless sudo
 `sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz`
+
+3.ganti password
 `passwd boaz`
 isi Skills39!
+
+4.passwordless sudo
 `echo "boaz ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/boaz`
 `sudo chmod 440 /etc/sudoers.d/boaz`
 
-3.Install Nusantara Root CA into the client OS trust store
+5.Install Nusantara Root CA into the client OS trust store
 `sudo cp /tmp/ca.pem /usr/local/share/ca-certificates/nusantara-root-ca.crt`
 `sudo update-ca-certificates`
 
-4. Install openvpn
+5. Install openvpn
 `apt install -y openvpn-systemd-resolved openvpn dns-utils`
 
-5.cari file
+6.cari file
 `cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /apt/openvpn/client.ovpn`
-`sudo mkdir -p /etc/openvpn/client /etc/openvpn/auth`
-`nano /etc/openvpn/auth/user.txt`
+
+7.bikin folder
+`sudo mkdir -p /etc/openvpn/client /etc/openvpn/auth``
 
 6.edit file user.txt
+`nano /etc/openvpn/auth/user.txt`
 ```text
+
 boaz
 Skills39s!
 ```
