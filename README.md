@@ -3,13 +3,13 @@
 ## NOTE : PAKAI TAB YA BIAR CEPET NYARI FILE ATAU CONFIGNYA
 
 ## CA bikin sendiri ya
-*pakai file ca v2.txt*
+`pakai file ca v2.txt`
 
 ## Server Side
 1.Install openvpn
-*apt install openvpn -y*
+`apt install openvpn -y`
 cari file
-*cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /apt/openvpn/server*
+`cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /apt/openvpn/server`
 
 2.edit file server.conf
 ```text
@@ -47,46 +47,46 @@ log-append /var/log/openvpn/openvpn.log
 verb 3
 ```
 3.bikin user vpn
-*sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz*
-*passwd boaz*
+`sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz`
+`passwd boaz`
 isi Skills39!
 
 4.nyalakan
-*sudo systemctl enable --now openvpn-server@server*
+`sudo systemctl enable --now openvpn-server@server`
 
 ## Client Side
 
 1.login root
-*su -*
+`su -`
 
 2.Create user boaz with passwordless sudo
-*sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz*
-*passwd boaz*
+`sudo useradd -m -s /bin/bash -c "Boaz Salossa" boaz`
+`passwd boaz`
 isi Skills39!
-*echo "boaz ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/boaz*
-*sudo chmod 440 /etc/sudoers.d/boaz*
+`echo "boaz ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/boaz`
+`sudo chmod 440 /etc/sudoers.d/boaz`
 
 3.Install Nusantara Root CA into the client OS trust store
-*sudo cp /tmp/ca.pem /usr/local/share/ca-certificates/nusantara-root-ca.crt*
-*sudo update-ca-certificates*
+`sudo cp /tmp/ca.pem /usr/local/share/ca-certificates/nusantara-root-ca.crt`
+`sudo update-ca-certificates`
 
 4. Install openvpn
-*apt install -y openvpn-systemd-resolved openvpn dns-utils*
+`apt install -y openvpn-systemd-resolved openvpn dns-utils`
 
 5.cari file
-*cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /apt/openvpn/client.ovpn*
-*sudo mkdir -p /etc/openvpn/client /etc/openvpn/auth*
-*nano /etc/openvpn/auth/user.txt*
+`cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /apt/openvpn/client.ovpn`
+`sudo mkdir -p /etc/openvpn/client /etc/openvpn/auth`
+`nano /etc/openvpn/auth/user.txt`
 
 6.edit file user.txt
 ```text
 boaz
 Skills39s!
 ```
-*sudo chmod 600 /etc/openvpn/auth/user.txt*
+`sudo chmod 600 /etc/openvpn/auth/user.txt`
 
 7.Copy Root CA for OpenVPN verification
-*sudo cp /usr/local/share/ca-certificates/nusantara-root-ca.crt /etc/openvpn/client/ca.crt*
+`sudo cp /usr/local/share/ca-certificates/nusantara-root-ca.crt /etc/openvpn/client/ca.crt`
 
 8.Edit File client.ovpn
 ```text
@@ -111,4 +111,4 @@ up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
 9.nyalakan
-*sudo openvpn --config /etc/openvpn/client/client.ovpn*
+`sudo openvpn --config /etc/openvpn/client/client.ovpn`
