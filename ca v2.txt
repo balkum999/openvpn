@@ -1,0 +1,44 @@
+mkdir -p /opt/grading/ca/
+cd /opt/grading/ca
+
+openssl genrsa -out private/ca.key 4096
+
+nano /etc/ssl/openssl.cnf >> cari [v3_ca]
+basicConstraints = critical, CA:TRUE
+keyUsage = critical, keyCertSign
+
+openssl req -x509 -new  -nodes -key private/ca.key   -sha256 -days 3650  -out ca.pem -config /etc/ssl/openssl.cnf -extensions v3_ca
+
+openssl genrsa -out web.key 2048
+
+openssl req -new  -key web.key -out web.csr
+
+
+nano web.ext
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = www.itnsa.id
+DNS.2 = www.int.itnsa.id
+
+openssl x509 -req  -in web.csr  -CA ca.pem  -CAkey ca.key  -CAcreateserial  -out web.pem  -days 825  -sha256 -extfile web.ext
+
+
+verif
+openssl x509 -in ca.pem -noout -text
+X509v3 Basic Constraints: critical
+    CA:TRUE
+
+X509v3 Key Usage: critical
+    Certificate Sign
+
+openssl x509 -in web.pem -noout -text 
+
+
+
+
+
