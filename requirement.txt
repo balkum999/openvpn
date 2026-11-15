@@ -1,0 +1,6 @@
+fw
+apt install openvpn
+
+client
+
+apt install -y openvpn-systemd-resolved openvpn dns-utils
